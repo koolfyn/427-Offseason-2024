@@ -4,7 +4,16 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkBase;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * The robot is configured to automatically run this class, and to call the functions corresponding to
@@ -12,7 +21,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
+public class Intake extends TimedRobot {
+
+  public CANSparkMax intakeMotor;
+  
+  
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
