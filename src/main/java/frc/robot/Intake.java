@@ -21,18 +21,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+// based on the kitbot
 public class Intake extends TimedRobot {
 
-  public CANSparkMax intakeMotor;
-  
-  
+    CANSparkMax intakeMotor = new CANSparkMax(0, MotorType.kBrushless);
+    Joystick m_manipController = new Joystick(1);
+
+    static final int INTAKE_CURRENT_LIMIT = 60;
+    static final double INTAKE_OUT_SPEED = 1.0;
+    static final double INTAKE_IN_SPEED = -0.4;
   
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+    intakeMotor.setSmartCurrentLimit(INTAKE_CURRENT_LIMIT);
+  }
 
   @Override
   public void robotPeriodic() {}
@@ -47,7 +54,23 @@ public class Intake extends TimedRobot {
   public void teleopInit() {}
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    // intake & outtake
+  if (m_manipController.getRawButton(1)) { // Button 1 pressed, outtake
+    intakeMotor.set(INTAKE_OUT_SPEED);
+  }
+    
+  else if (m_manipController.getRawButton(2)) { // Button 2 pressed, intake
+    intakeMotor.set(INTAKE_IN_SPEED);
+  }
+    
+  else // No buttons pressed
+  {
+    intakeMotor.set(0);
+  }
+
+    }
 
   @Override
   public void disabledInit() {}
