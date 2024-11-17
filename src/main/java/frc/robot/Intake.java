@@ -38,7 +38,8 @@ public class Intake extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    intakeMotor.setSmartCurrentLimit(INTAKE_CURRENT_LIMIT);
+      intakeMotor.setInverted(true);
+      intakeMotor.setSmartCurrentLimit(INTAKE_CURRENT_LIMIT);
   }
 
   @Override
